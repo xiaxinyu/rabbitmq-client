@@ -1,0 +1,17 @@
+management:
+  health:
+    redis:
+      enabled: false
+
+spring:
+  rabbitmq:
+    listener:
+      simple:
+        auto-startup: false
+
+rabbitmq:
+  enable: true
+
+logging:
+  level:
+    org.springframework: info
