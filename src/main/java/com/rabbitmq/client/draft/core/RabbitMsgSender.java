@@ -1,15 +1,14 @@
-package com.learning.rabbitmq.core;
+package com.rabbitmq.client.draft.core;
 
 import com.alibaba.fastjson.JSON;
-import com.learning.rabbitmq.common.RabbitMsgDTO;
-import com.learning.rabbitmq.common.RabbitUtils;
+import com.rabbitmq.client.draft.common.RabbitMsgDTO;
+import com.rabbitmq.client.draft.common.RabbitUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageDeliveryMode;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
@@ -22,8 +21,7 @@ import java.io.UnsupportedEncodingException;
 @Component
 public class RabbitMsgSender {
 
-    @Value("${rabbitmq.enable}")
-    private boolean isEnable;
+    private boolean isEnable = true;
 
     public void sendMsg(RabbitTemplate rabbitTemplate, RabbitMsgDTO rabbitMsgDto, String exchange, String routingKey, Long timeOut) throws UnsupportedEncodingException {
         log.info("发送MQ消息开关是否开启:{}", isEnable);

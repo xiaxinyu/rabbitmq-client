@@ -1,4 +1,4 @@
-package com.learning.rabbitmq.common;
+package com.rabbitmq.client.draft.common;
 
 import java.util.UUID;
 

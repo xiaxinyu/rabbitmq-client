@@ -1,12 +1,14 @@
-package com.learning.rabbitmq.core;
+package com.rabbitmq.client.draft;
 
-import com.learning.rabbitmq.LearningRabbitMqApplication;
-import com.learning.rabbitmq.biz.TestConsumer;
-import com.learning.rabbitmq.common.RabbitMsgDTO;
-import com.learning.rabbitmq.common.RabbitMsgType;
-import com.learning.rabbitmq.core.domain.ConnFactoryCfg;
-import com.learning.rabbitmq.core.domain.ExchangeCfg;
-import com.learning.rabbitmq.core.domain.QueueCfg;
+import com.rabbitmq.client.draft.LearningRabbitMqApplication;
+import com.rabbitmq.client.draft.biz.TestConsumer;
+import com.rabbitmq.client.draft.common.RabbitMsgDTO;
+import com.rabbitmq.client.draft.common.RabbitMsgType;
+import com.rabbitmq.client.draft.core.RabbitMqUtils;
+import com.rabbitmq.client.draft.core.RabbitMsgSender;
+import com.rabbitmq.client.draft.core.domain.ConnFactoryCfg;
+import com.rabbitmq.client.draft.core.domain.ExchangeCfg;
+import com.rabbitmq.client.draft.core.domain.QueueCfg;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
@@ -29,15 +31,12 @@ import java.util.Map;
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {LearningRabbitMqApplication.class})
-public class FanoutTest {
+public class DirectTest {
     @Autowired
     RabbitMqUtils rabbitMqUtils;
 
     @Autowired
     RabbitMsgSender rabbitMsgSender;
-
-//    @Autowired
-//    SimpleMessageListenerContainer container;
 
     private Channel channel;
 

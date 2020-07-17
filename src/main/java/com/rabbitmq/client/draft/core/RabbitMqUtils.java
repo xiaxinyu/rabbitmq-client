@@ -1,8 +1,8 @@
-package com.learning.rabbitmq.core;
+package com.rabbitmq.client.draft.core;
 
-import com.learning.rabbitmq.core.domain.ConnFactoryCfg;
-import com.learning.rabbitmq.core.domain.ExchangeCfg;
-import com.learning.rabbitmq.core.domain.QueueCfg;
+import com.rabbitmq.client.draft.core.domain.ConnFactoryCfg;
+import com.rabbitmq.client.draft.core.domain.QueueCfg;
+import com.rabbitmq.client.draft.core.domain.ExchangeCfg;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;

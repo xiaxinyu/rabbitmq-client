@@ -1,4 +1,4 @@
-package com.learning.rabbitmq.core.domain;
+package com.rabbitmq.client.draft.core.domain;
 
 import com.rabbitmq.client.BuiltinExchangeType;
 import lombok.*;

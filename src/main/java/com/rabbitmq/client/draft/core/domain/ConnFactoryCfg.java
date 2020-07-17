@@ -1,4 +1,4 @@
-package com.learning.rabbitmq.core.domain;
+package com.rabbitmq.client.draft.core.domain;
 
 import lombok.Builder;
 import lombok.Getter;

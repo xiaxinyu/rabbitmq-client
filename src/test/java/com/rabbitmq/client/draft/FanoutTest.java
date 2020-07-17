@@ -1,12 +1,14 @@
-package com.learning.rabbitmq.core;
+package com.rabbitmq.client.draft;
 
-import com.learning.rabbitmq.LearningRabbitMqApplication;
-import com.learning.rabbitmq.biz.TestConsumer;
-import com.learning.rabbitmq.common.RabbitMsgDTO;
-import com.learning.rabbitmq.common.RabbitMsgType;
-import com.learning.rabbitmq.core.domain.ConnFactoryCfg;
-import com.learning.rabbitmq.core.domain.ExchangeCfg;
-import com.learning.rabbitmq.core.domain.QueueCfg;
+import com.rabbitmq.client.draft.LearningRabbitMqApplication;
+import com.rabbitmq.client.draft.biz.TestConsumer;
+import com.rabbitmq.client.draft.common.RabbitMsgDTO;
+import com.rabbitmq.client.draft.common.RabbitMsgType;
+import com.rabbitmq.client.draft.core.RabbitMqUtils;
+import com.rabbitmq.client.draft.core.RabbitMsgSender;
+import com.rabbitmq.client.draft.core.domain.ConnFactoryCfg;
+import com.rabbitmq.client.draft.core.domain.ExchangeCfg;
+import com.rabbitmq.client.draft.core.domain.QueueCfg;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
@@ -29,12 +31,15 @@ import java.util.Map;
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {LearningRabbitMqApplication.class})
-public class DirectTest {
+public class FanoutTest {
     @Autowired
     RabbitMqUtils rabbitMqUtils;
 
     @Autowired
     RabbitMsgSender rabbitMsgSender;
+
+//    @Autowired
+//    SimpleMessageListenerContainer container;
 
     private Channel channel;
 
@@ -77,7 +82,9 @@ public class DirectTest {
 
 
         //Queue1
-        QueueCfg queueCfg1 = QueueCfg.builder().queue(this.queue1).autoDelete(false).exclusive(false).durable(true).build();
+        Map<String, Object> queue1Args = new HashMap<>();
+        queue1Args.put("x-max-length", 100);
+        QueueCfg queueCfg1 = QueueCfg.builder().queue(this.queue1).autoDelete(false).exclusive(false).durable(true).args(queue1Args).build();
         AMQP.Queue.DeclareOk queueOk1 = rabbitMqUtils.createQueue(this.channel, queueCfg1);
         Assert.assertNotNull(queueOk1);
 
@@ -109,7 +116,7 @@ public class DirectTest {
     }
 
     @Test
-    public void testSendMessage() throws IOException {
+    public void testSendMessage() throws IOException, InterruptedException {
         TestConsumer consumer = new TestConsumer(this.channel);
         this.channel.basicConsume(this.queue1, false, consumer);
         this.channel.basicConsume(this.queue2, false, consumer);
@@ -119,5 +126,13 @@ public class DirectTest {
 
         RabbitMsgDTO rabbitMsgDto = RabbitMsgDTO.builder().msgType(RabbitMsgType.PLAIN).data(message).build();
         rabbitMsgSender.sendMsg(this.rabbitTemplate, rabbitMsgDto, this.exchange, this.queue1, 1000L);
+
+        working();
+    }
+
+    private void working() throws InterruptedException {
+        while (true){
+            Thread.sleep(5000);
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.learning.rabbitmq.biz;
+package com.rabbitmq.client.draft.biz;
 
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
@@ -35,5 +35,7 @@ public class TestConsumer extends DefaultConsumer {
         }
         String message = new String(body, "UTF-8");
         log.info("Received Message: correlationId={}, content={}", correlationId, message);
+
+        this.getChannel().basicNack(envelope.getDeliveryTag(), false, true);
     }
 }
