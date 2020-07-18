@@ -1,6 +1,6 @@
 package com.rabbitmq.client.draft;
 
-import com.rabbitmq.client.draft.LearningRabbitMqApplication;
+import com.rabbitmq.client.RabbitMqClientApplication;
 import com.rabbitmq.client.draft.biz.TestConsumer;
 import com.rabbitmq.client.draft.common.RabbitMsgDTO;
 import com.rabbitmq.client.draft.common.RabbitMsgType;
@@ -30,7 +30,7 @@ import java.util.Map;
 
 @Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {LearningRabbitMqApplication.class})
+@SpringBootTest(classes = {RabbitMqClientApplication.class})
 public class DirectTest {
     @Autowired
     RabbitMqUtils rabbitMqUtils;

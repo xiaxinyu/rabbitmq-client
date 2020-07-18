@@ -1,6 +1,9 @@
 package com.rabbitmq.client.draft;
 
-import com.rabbitmq.client.draft.LearningRabbitMqApplication;
+import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.BuiltinExchangeType;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.RabbitMqClientApplication;
 import com.rabbitmq.client.draft.biz.TestConsumer;
 import com.rabbitmq.client.draft.common.RabbitMsgDTO;
 import com.rabbitmq.client.draft.common.RabbitMsgType;
@@ -9,9 +12,6 @@ import com.rabbitmq.client.draft.core.RabbitMsgSender;
 import com.rabbitmq.client.draft.core.domain.ConnFactoryCfg;
 import com.rabbitmq.client.draft.core.domain.ExchangeCfg;
 import com.rabbitmq.client.draft.core.domain.QueueCfg;
-import com.rabbitmq.client.AMQP;
-import com.rabbitmq.client.BuiltinExchangeType;
-import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Before;
@@ -30,7 +30,7 @@ import java.util.Map;
 
 @Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {LearningRabbitMqApplication.class})
+@SpringBootTest(classes = {RabbitMqClientApplication.class})
 public class FanoutTest {
     @Autowired
     RabbitMqUtils rabbitMqUtils;

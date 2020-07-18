@@ -10,8 +10,8 @@ import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
  * @date 2020.4.15
  */
 @SpringBootApplication(exclude = {RabbitAutoConfiguration.class})
-public class LearningRabbitMqApplication {
+public class RabbitMqClientApplication {
     public static void main(String[] args) {
-        SpringApplication.run(LearningRabbitMqApplication.class, args);
+        SpringApplication.run(RabbitMqClientApplication.class, args);
     }
 }
